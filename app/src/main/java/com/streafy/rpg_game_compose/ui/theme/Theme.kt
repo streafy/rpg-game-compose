@@ -1,4 +1,4 @@
-package com.streafy.rpggamecompose.ui.theme
+package com.streafy.rpg_game_compose.ui.theme
 
 import android.app.Activity
 import android.os.Build
