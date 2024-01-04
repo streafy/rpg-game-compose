@@ -53,7 +53,7 @@ fun CharacterCard(character: Character) {
 
 @Preview(showBackground = true)
 @Composable
-fun HomeScreenPreview() {
+fun CharacterSelectionScreenPreview() {
     val mockData = List(10) {
         Character("Character $it ", 1)
     }
