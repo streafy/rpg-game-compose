@@ -18,7 +18,7 @@ import com.streafy.rpg_game_compose.domain.entity.characters_screen.Character
 import com.streafy.rpg_game_compose.ui.theme.RpgGameComposeTheme
 
 @Composable
-fun HomeScreen(characters: List<Character>) {
+fun CharacterSelectionScreen(characters: List<Character>) {
     LazyColumn(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -59,6 +59,6 @@ fun HomeScreenPreview() {
     }
 
     RpgGameComposeTheme {
-        HomeScreen(characters = mockData)
+        CharacterSelectionScreen(characters = mockData)
     }
 }
