@@ -7,8 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.streafy.rpg_game_compose.domain.entity.characters_screen.Character
-import com.streafy.rpg_game_compose.ui.game.GameScreen
+import com.streafy.rpg_game_compose.ui.MainScreen
 import com.streafy.rpg_game_compose.ui.theme.RpgGameComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,11 +21,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    val mockData = List(30) {
-                        Character("Character $it ", 1)
-                    }
-                    //HomeScreen(characters = mockData)
-                    GameScreen()
+                    MainScreen()
                 }
             }
         }
