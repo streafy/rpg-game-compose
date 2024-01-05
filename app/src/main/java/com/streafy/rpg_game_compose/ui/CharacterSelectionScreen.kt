@@ -1,5 +1,6 @@
 package com.streafy.rpg_game_compose.ui
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,16 +15,26 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.streafy.rpg_game_compose.domain.entity.characters_screen.Character
 import com.streafy.rpg_game_compose.ui.theme.RpgGameComposeTheme
 
 @Composable
-fun CharacterSelectionScreen(characters: List<Character>) {
+fun CharacterSelectionScreen(
+    characters: List<Character>,
+    onCharacterClick: () -> Unit
+) {
     LazyColumn(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        item {
+            Text(text = "Character List", fontSize = 36.sp)
+        }
         items(characters) { character ->
-            CharacterCard(character = character)
+            CharacterCard(
+                character = character,
+                onCharacterClick = onCharacterClick
+            )
         }
         item {
             Button(onClick = { /*TODO*/ }) {
@@ -34,10 +45,14 @@ fun CharacterSelectionScreen(characters: List<Character>) {
 }
 
 @Composable
-fun CharacterCard(character: Character) {
+fun CharacterCard(
+    character: Character,
+    onCharacterClick: () -> Unit
+) {
     Card(
         modifier = Modifier
-            .padding(4.dp)
+            .padding(horizontal = 8.dp, vertical = 4.dp)
+            .clickable { onCharacterClick() }
     ) {
         Row(
             modifier = Modifier
@@ -59,6 +74,6 @@ fun CharacterSelectionScreenPreview() {
     }
 
     RpgGameComposeTheme {
-        CharacterSelectionScreen(characters = mockData)
+        CharacterSelectionScreen(characters = mockData) {}
     }
 }
