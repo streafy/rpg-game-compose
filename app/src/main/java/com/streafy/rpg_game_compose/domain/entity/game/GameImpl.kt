@@ -4,11 +4,11 @@ import com.streafy.rpg_game_compose.domain.entity.game.creature.Fightable
 import com.streafy.rpg_game_compose.domain.entity.game.creature.Goblin
 import com.streafy.rpg_game_compose.domain.entity.game.location.Location
 import com.streafy.rpg_game_compose.domain.entity.game.logger.GameLogger
-import com.streafy.rpg_game_compose.domain.entity.game.player.Player
+import com.streafy.rpg_game_compose.domain.entity.game.player.PlayerCharacter
 
 class GameImpl : Game {
 
-    private var player = Player(name = "streezy", healthPoints = 100)
+    private var player = PlayerCharacter(name = "streezy", healthPoints = 100)
     private var enemy = Goblin()
 
     private var currentLocation = Location("Stating location")

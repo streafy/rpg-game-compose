@@ -2,7 +2,7 @@ package com.streafy.rpg_game_compose.domain.entity.game.player
 
 import com.streafy.rpg_game_compose.domain.entity.game.creature.Fightable
 
-class Player(
+class PlayerCharacter(
     override val name: String,
     override var healthPoints: Int
 ) : Fightable {
