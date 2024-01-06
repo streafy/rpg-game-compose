@@ -13,6 +13,8 @@ class PlayerCharacter(
 
     private val baseArmor = 2
 
+    val level = 1
+
     override fun takeDamage(damage: Int): Int {
         val actualDamage = damage - baseArmor
         healthPoints -= actualDamage

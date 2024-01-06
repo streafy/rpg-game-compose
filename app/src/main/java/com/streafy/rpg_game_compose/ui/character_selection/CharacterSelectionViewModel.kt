@@ -20,6 +20,6 @@ class CharacterSelectionViewModel : ViewModel() {
     }
 
     private fun loadCharacters() {
-        _state.value = getPlayerCharacterListUseCase().map { Character(it.name, 1) }
+        _state.value = getPlayerCharacterListUseCase().map { Character(it.name, it.level) }
     }
 }
