@@ -1,4 +1,4 @@
-package com.streafy.rpg_game_compose.ui
+package com.streafy.rpg_game_compose.ui.character_selection
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -11,19 +11,24 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.streafy.rpg_game_compose.domain.entity.characters_screen.Character
 import com.streafy.rpg_game_compose.ui.theme.RpgGameComposeTheme
 
 @Composable
 fun CharacterSelectionScreen(
-    characters: List<Character>,
+    viewModel: CharacterSelectionViewModel = viewModel(),
     onCharacterClick: () -> Unit
 ) {
+    val characters by viewModel.state.collectAsStateWithLifecycle()
+
     LazyColumn(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(8.dp)
@@ -71,11 +76,7 @@ fun CharacterCard(
 @Preview(showBackground = true)
 @Composable
 fun CharacterSelectionScreenPreview() {
-    val mockData = List(10) {
-        Character("Character $it ", 1)
-    }
-
     RpgGameComposeTheme {
-        CharacterSelectionScreen(characters = mockData) {}
+        CharacterSelectionScreen() {}
     }
 }

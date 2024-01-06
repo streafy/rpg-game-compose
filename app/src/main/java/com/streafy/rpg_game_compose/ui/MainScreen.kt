@@ -2,9 +2,9 @@ package com.streafy.rpg_game_compose.ui
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.rememberNavController
-import com.streafy.rpg_game_compose.domain.entity.characters_screen.Character
 import com.streafy.rpg_game_compose.navigation.AppNavHost
 import com.streafy.rpg_game_compose.navigation.Screen
+import com.streafy.rpg_game_compose.ui.character_selection.CharacterSelectionScreen
 import com.streafy.rpg_game_compose.ui.game.GameScreen
 
 @Composable
@@ -17,10 +17,7 @@ fun MainScreen() {
             HomeScreen { navController.navigate(Screen.CharacterSelection.route) }
         },
         characterSelectionScreenContent = {
-            val mockData = List(30) {
-                Character("Character $it ", 1)
-            }
-            CharacterSelectionScreen(characters = mockData) {
+            CharacterSelectionScreen {
                 navController.navigate(Screen.Game.route)
             }
         },
