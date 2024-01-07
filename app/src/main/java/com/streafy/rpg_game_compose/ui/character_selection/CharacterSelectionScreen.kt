@@ -24,7 +24,7 @@ import com.streafy.rpg_game_compose.ui.theme.RpgGameComposeTheme
 
 @Composable
 fun CharacterSelectionScreen(
-    viewModel: CharacterSelectionViewModel = viewModel(),
+    viewModel: CharacterSelectionViewModel = viewModel(factory = CharacterSelectionViewModelProvider.Factory),
     onCharacterClick: () -> Unit
 ) {
     val characters by viewModel.state.collectAsStateWithLifecycle()
