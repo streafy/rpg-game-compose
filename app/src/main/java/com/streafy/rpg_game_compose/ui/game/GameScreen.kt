@@ -21,6 +21,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,14 +31,23 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.streafy.rpg_game_compose.domain.entity.game.logger.LogEntry
+import com.streafy.rpg_game_compose.ui.AppViewModelProvider
 import com.streafy.rpg_game_compose.ui.theme.RpgGameComposeTheme
 
 @Composable
-fun GameScreen(viewModel: GameViewModel = viewModel()) {
+fun GameScreen(
+    characterId: Int,
+    viewModel: GameViewModel = viewModel(factory = AppViewModelProvider.Factory)
+) {
     val state = viewModel.state.collectAsState()
     val player = state.value.player
     val enemy = state.value.currentEnemy
     val logs = state.value.gameLogs
+
+    LaunchedEffect(characterId) {
+        viewModel.fetchPlayerCharacterById(characterId)
+    }
+
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -64,7 +74,7 @@ fun GameScreen(viewModel: GameViewModel = viewModel()) {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            CreatureCard(player.name, player.health, 100)
+            CreatureCard(player.name, player.healthPoints, 100)
             CreatureCard(enemy.name, enemy.health, 40)
         }
         Row {
@@ -152,6 +162,6 @@ fun CombatLog(logs: List<LogEntry>) {
 @Composable
 fun GameScreenPreview() {
     RpgGameComposeTheme {
-        GameScreen()
+        GameScreen(0)
     }
 }

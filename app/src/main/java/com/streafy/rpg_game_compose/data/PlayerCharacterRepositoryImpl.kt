@@ -30,11 +30,14 @@ class PlayerCharacterRepositoryImpl(
     }
 
     private fun Flow<List<RoomPlayerCharacter>>.mapToDomainList(): Flow<List<PlayerCharacter>> =
-        map { list -> list.map { PlayerCharacter(it.name, it.healthPoints) } }
+        map { list -> list.map { it.toDomain() } }
 
     private fun Flow<RoomPlayerCharacter>.mapToDomain(): Flow<PlayerCharacter> =
-        map { PlayerCharacter(it.name, it.healthPoints) }
+        map { it.toDomain() }
 
     private fun PlayerCharacter.toRoomPlayerCharacter(): RoomPlayerCharacter =
-        RoomPlayerCharacter(0, name, healthPoints, baseDamage, diceCount, diceSides, level)
+        RoomPlayerCharacter(id, name, healthPoints, baseDamage, diceCount, diceSides, level)
+
+    private fun RoomPlayerCharacter.toDomain(): PlayerCharacter =
+        PlayerCharacter(name, healthPoints, id)
 }

@@ -7,6 +7,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.streafy.rpg_game_compose.RgpGameComposeApplication
 import com.streafy.rpg_game_compose.ui.character_creation.CharacterCreationViewModel
 import com.streafy.rpg_game_compose.ui.character_selection.CharacterSelectionViewModel
+import com.streafy.rpg_game_compose.ui.game.GameViewModel
 
 object AppViewModelProvider {
 
@@ -16,6 +17,9 @@ object AppViewModelProvider {
         }
         initializer {
             CharacterCreationViewModel(rpgGameComposeApplication().container.playerCharacterRepository)
+        }
+        initializer {
+            GameViewModel(rpgGameComposeApplication().container.playerCharacterRepository)
         }
     }
 }

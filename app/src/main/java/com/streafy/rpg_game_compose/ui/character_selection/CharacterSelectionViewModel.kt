@@ -32,5 +32,5 @@ class CharacterSelectionViewModel(
     }
 
     private fun List<PlayerCharacter>.toCharacterList(): List<Character> =
-        map { Character(it.name, it.level) }
+        map { Character(it.id, it.name, it.level) }
 }

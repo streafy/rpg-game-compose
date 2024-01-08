@@ -20,7 +20,7 @@ fun MainScreen() {
         characterSelectionScreenContent = {
             CharacterSelectionScreen(
                 onCharacterClick = {
-                    navController.navigate(Screen.Game.route)
+                    navController.navigate(Screen.Game.getRouteWithArgs(it.id))
                 },
                 onCreateCharacterButtonClicked = { navController.navigate(Screen.CharacterCreation.route) }
             )
@@ -29,7 +29,7 @@ fun MainScreen() {
             CharacterCreationScreen(navigateBack = { navController.popBackStack() })
         },
         gameScreenContent = {
-            GameScreen()
+            GameScreen(it)
         }
     )
 }

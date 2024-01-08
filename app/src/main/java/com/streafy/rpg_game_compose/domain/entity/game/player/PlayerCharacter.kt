@@ -4,7 +4,8 @@ import com.streafy.rpg_game_compose.domain.entity.game.creature.Fightable
 
 class PlayerCharacter(
     override val name: String,
-    override var healthPoints: Int
+    override var healthPoints: Int,
+    val id: Int = 0
 ) : Fightable {
 
     override val baseDamage: Int = 10
