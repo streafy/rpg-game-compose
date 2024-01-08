@@ -32,10 +32,8 @@ class CharacterCreationViewModel(
         return isValid
     }
 
-    private fun String.doNotContainsDigits(): Boolean {
-        val pattern = Regex("\\d")
-        return !pattern.containsMatchIn(this)
-    }
+    private fun String.doNotContainsDigits(): Boolean =
+        this.all { !it.isDigit() }
 }
 
 data class CharacterCreationUiState(
