@@ -12,8 +12,29 @@ class PlayerCharacterRepositoryImpl(
 ) : PlayerCharacterRepository {
 
     override fun getCharacters(): Flow<List<PlayerCharacter>> =
-        playerCharacterDao.getAllItems().mapToDomain()
+        playerCharacterDao.getAllItems().mapToDomainList()
 
-    private fun Flow<List<RoomPlayerCharacter>>.mapToDomain(): Flow<List<PlayerCharacter>> =
+    override fun getCharacter(id: Int): Flow<PlayerCharacter> =
+        playerCharacterDao.getItem(id).mapToDomain()
+
+    override suspend fun insertCharacter(character: PlayerCharacter) {
+        playerCharacterDao.insert(character.toRoomPlayerCharacter())
+    }
+
+    override suspend fun updateCharacter(character: PlayerCharacter) {
+        playerCharacterDao.update(character.toRoomPlayerCharacter())
+    }
+
+    override suspend fun deleteCharacter(character: PlayerCharacter) {
+        playerCharacterDao.delete(character.toRoomPlayerCharacter())
+    }
+
+    private fun Flow<List<RoomPlayerCharacter>>.mapToDomainList(): Flow<List<PlayerCharacter>> =
         map { list -> list.map { PlayerCharacter(it.name, it.healthPoints) } }
+
+    private fun Flow<RoomPlayerCharacter>.mapToDomain(): Flow<PlayerCharacter> =
+        map { PlayerCharacter(it.name, it.healthPoints) }
+
+    private fun PlayerCharacter.toRoomPlayerCharacter(): RoomPlayerCharacter =
+        RoomPlayerCharacter(0, name, healthPoints, baseDamage, diceCount, diceSides, level)
 }

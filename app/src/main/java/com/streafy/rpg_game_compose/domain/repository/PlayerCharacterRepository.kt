@@ -6,4 +6,12 @@ import kotlinx.coroutines.flow.Flow
 interface PlayerCharacterRepository {
 
     fun getCharacters(): Flow<List<PlayerCharacter>>
+
+    fun getCharacter(id: Int): Flow<PlayerCharacter>
+
+    suspend fun insertCharacter(character: PlayerCharacter)
+
+    suspend fun updateCharacter(character: PlayerCharacter)
+
+    suspend fun deleteCharacter(character: PlayerCharacter)
 }
