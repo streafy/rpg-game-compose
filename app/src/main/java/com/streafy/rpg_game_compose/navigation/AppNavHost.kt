@@ -10,6 +10,7 @@ fun AppNavHost(
     navHostController: NavHostController,
     homeScreenContent: @Composable () -> Unit,
     characterSelectionScreenContent: @Composable () -> Unit,
+    characterCreationScreenContent: @Composable () -> Unit,
     gameScreenContent: @Composable () -> Unit
 ) {
     NavHost(
@@ -21,6 +22,9 @@ fun AppNavHost(
         }
         composable(Screen.CharacterSelection.route) {
             characterSelectionScreenContent()
+        }
+        composable(Screen.CharacterCreation.route) {
+            characterCreationScreenContent()
         }
         composable(Screen.Game.route) {
             gameScreenContent()

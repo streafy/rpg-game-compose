@@ -6,12 +6,14 @@ sealed class Screen(
 
     object Home : Screen(ROUTE_HOME)
     object CharacterSelection : Screen(ROUTE_CHARACTER_SELECTION)
+    object CharacterCreation : Screen(ROUTE_CHARACTER_CREATION)
     object Game : Screen(ROUTE_GAME)
 
     companion object {
 
         const val ROUTE_HOME = "home"
         const val ROUTE_CHARACTER_SELECTION = "character_selection"
+        const val ROUTE_CHARACTER_CREATION = "character_creation"
         const val ROUTE_GAME = "game"
     }
 }

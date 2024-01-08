@@ -20,12 +20,14 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.streafy.rpg_game_compose.domain.entity.characters_screen.Character
+import com.streafy.rpg_game_compose.ui.AppViewModelProvider
 import com.streafy.rpg_game_compose.ui.theme.RpgGameComposeTheme
 
 @Composable
 fun CharacterSelectionScreen(
-    viewModel: CharacterSelectionViewModel = viewModel(factory = CharacterSelectionViewModelProvider.Factory),
-    onCharacterClick: () -> Unit
+    viewModel: CharacterSelectionViewModel = viewModel(factory = AppViewModelProvider.Factory),
+    onCharacterClick: () -> Unit,
+    onCreateCharacterButtonClicked: () -> Unit
 ) {
     val characters by viewModel.state.collectAsStateWithLifecycle()
 
@@ -43,7 +45,7 @@ fun CharacterSelectionScreen(
             )
         }
         item {
-            Button(onClick = { /*TODO*/ }) {
+            Button(onClick = onCreateCharacterButtonClicked) {
                 Text(text = "Create New Character")
             }
         }
@@ -77,6 +79,9 @@ fun CharacterCard(
 @Composable
 fun CharacterSelectionScreenPreview() {
     RpgGameComposeTheme {
-        CharacterSelectionScreen() {}
+        CharacterSelectionScreen(
+            onCharacterClick = {},
+            onCreateCharacterButtonClicked = {}
+        )
     }
 }
